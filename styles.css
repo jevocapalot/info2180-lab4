@@ -16,6 +16,31 @@ header h1 {
     font-size: 28px;
     letter-spacing: 1px;
 }
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.logo-icon svg {
+    transition: 0.3s ease;
+}
+
+/* Subtle hero hover effect */
+.logo-icon:hover svg {
+    transform: rotate(-20deg) scale(1.15);
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+}
+.logo-icon svg {
+    animation: swing 3s infinite ease-in-out;
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-12deg); }
+    100% { transform: rotate(0deg); }
+}
 
 main {
     width: 60%;
@@ -79,4 +104,13 @@ h2 {
 .error {
     color: #c9302c;
     font-weight: bold;
+}
+
+#result {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
 }

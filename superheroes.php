@@ -63,10 +63,31 @@ $superheroes = [
   ], 
 ];
 
-?>
+$query = filter_input(INPUT_GET, "query", FILTER_SANITIZE_STRING);
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if ($query) {
+    $found = false;
+
+    foreach ($superheroes as $superhero) {
+        if (strcasecmp($superhero['alias'], $query) === 0 || strcasecmp($superhero['name'], $query) === 0) {
+            echo "<h3 class='superhero-name'>{$superhero['alias']}</h3>";
+            echo "<h4 class='superhero-alias'>A.K.A {$superhero['name']}</h4>";
+            echo "<p class='superhero-bio'>{$superhero['biography']}</p>";
+            $found = true;
+            break;
+        }
+    }
+
+    if (!$found) {
+        echo "<p class='error'>SUPERHERO NOT FOUND</p>";
+    }
+
+} else {
+    echo "<ul>";
+    foreach ($superheroes as $superhero) {
+        echo "<li>{$superhero['alias']}</li>";
+    }
+    echo "</ul>";
+}
+
+?>
